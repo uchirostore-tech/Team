@@ -1,0 +1,17 @@
+# language (km or en) | YouTube link | optional custom title
+# Add as many lines as you want. Titles and thumbnails are fetched automatically.
+km|https://www.youtube.com/watch?v=ZRfN-s1r2ZY
+km|https://www.youtube.com/watch?v=24kfc0GHy_I
+km|https://www.youtube.com/watch?v=5naFIorRWGc
+km|https://www.youtube.com/watch?v=JohiXQKbQ1c
+km|https://www.youtube.com/watch?v=_lp55t9zzZA
+km|https://www.youtube.com/watch?v=EfRjYfMBFTc
+km|https://www.youtube.com/watch?v=GZVLsIGbi3Y
+km|https://www.youtube.com/watch?v=tiLtssm5zcQ
+km|https://www.youtube.com/watch?v=-puRVd5B7uc
+en|https://www.youtube.com/watch?v=DNdBJ5tgyjI
+en|https://www.youtube.com/watch?v=ALMz11FwbSQ
+en|https://www.youtube.com/watch?v=rqGNDT_utao
+en|https://www.youtube.com/watch?v=UavYBwvQwLY
+en|https://www.youtube.com/watch?v=y0S068qNpfA
+en|https://www.youtube.com/watch?v=Bl9j9T1iWJA
