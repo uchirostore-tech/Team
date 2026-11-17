@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="km"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Dropship Hub</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Kantumruy+Pro:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#f2f5f3;--ink:#0e2a2d;--mut:#5d7376;--line:#d9e2df;--acc:#0f766e;--gold:#f0a500}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font:16px/1.7 'Kantumruy Pro','Noto Sans Khmer',system-ui,sans-serif;background:var(--bg);color:var(--ink)}
+header{background:var(--ink);color:#fff;position:sticky;top:0;z-index:5}
+.bar{max-width:1080px;margin:auto;padding:0 20px;display:flex;align-items:center;gap:20px;flex-wrap:wrap}
+.logo{font-weight:700;font-size:18px;padding:14px 0;display:flex;align-items:center;gap:10px}
+.logo:before{content:"";width:12px;height:12px;background:var(--gold)}
+nav{display:flex;margin-left:auto}
+nav button{background:none;border:0;border-bottom:3px solid transparent;color:#9fb5b3;font:inherit;font-weight:600;padding:16px 14px 13px;cursor:pointer}
+nav button.on{color:#fff;border-color:var(--gold)}
+main{max-width:1080px;margin:auto;padding:36px 20px 80px}
+section{display:none}section.on{display:block}
+h1{font-size:clamp(28px,5vw,46px);line-height:1.4;max-width:18em}
+h2{font-size:22px;margin:40px 0 10px}
+h3{font-size:16px;line-height:1.5}
+p{max-width:44em}
+.sub{color:var(--mut);max-width:40em;margin:10px 0 24px}
+ul{padding-left:22px;max-width:44em}
+.btn{background:var(--acc);color:#fff;border:0;border-radius:6px;padding:10px 18px;font:inherit;font-weight:600;cursor:pointer}
+.btn:hover{filter:brightness(.92)}.btn:disabled{opacity:.45;cursor:default}
+.btn.gold{background:var(--gold);color:var(--ink)}
+.btn.ghost{background:#fff;color:var(--ink);border:1px solid var(--line)}
+.btn.ghost.on{background:var(--ink);color:#fff;border-color:var(--ink)}
+:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+.flow{list-style:none;display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));margin:20px 0;border:1px solid var(--line);background:#fff;padding:0}
+.flow li{padding:18px;border-right:1px solid var(--line)}.flow li:last-child{border:0}
+.flow b{display:block;font-size:30px}
+.flow p{color:var(--mut);font-size:14px}
+.tags span{display:inline-block;border:1px solid var(--line);background:#fff;padding:4px 14px;margin:0 6px 8px 0;border-radius:99px}
+.vs{width:100%;max-width:700px;border-collapse:collapse;background:#fff;margin:16px 0}
+.vs td,.vs th{border:1px solid var(--line);padding:10px 14px;text-align:left}
+.vs th{background:var(--ink);color:#fff}
+.ctl{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:24px}
+input[type=text]{flex:1;min-width:200px;padding:11px 14px;border:1px solid var(--line);border-radius:6px;font:inherit;background:#fff}
+.vg{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:26px 18px}
+.v{cursor:pointer}
+.th{position:relative;aspect-ratio:16/9;background:#cfd9d6;border-radius:10px;overflow:hidden}
+.th img{width:100%;height:100%;object-fit:cover;display:block}
+.th b{position:absolute;inset:0;display:grid;place-items:center;color:#fff;font-size:28px;background:rgba(14,42,45,.35);opacity:0;transition:opacity .15s}
+.v:hover .th b,.v:focus-visible .th b{opacity:1}
+.th em{position:absolute;left:8px;top:8px;background:var(--gold);color:var(--ink);font-style:normal;font-size:13px;font-weight:700;padding:0 10px;border-radius:99px}
+.v h3{margin-top:10px}.v p{color:var(--mut);font-size:14px}
+.paste{display:flex;max-width:760px}
+.paste input{font:inherit;font-size:17px;padding:16px 18px;border:2px solid var(--ink);border-right:0;border-radius:8px 0 0 8px;background:#fff;flex:1;min-width:0}
+.paste .btn{border-radius:0 8px 8px 0;padding:0 28px;background:var(--ink)}
+#st{margin:14px 0;min-height:26px;color:var(--mut)}#st.err{color:#b42318}
+#st.load:before{content:"";display:inline-block;width:14px;height:14px;border:2px solid var(--line);border-top-color:var(--acc);border-radius:50%;margin-right:8px;vertical-align:-2px;animation:s .8s linear infinite}
+@keyframes s{to{transform:rotate(360deg)}}
+.res{background:#fff;border:1px solid var(--line);padding:20px;margin-top:8px}
+.dl{display:grid;grid-template-columns:minmax(160px,300px) 1fr;gap:22px}
+.dl img{width:100%;aspect-ratio:16/9;object-fit:cover;border-radius:8px;background:#cfd9d6}
+@media(max-width:640px){.dl{grid-template-columns:1fr}}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+.pg{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:8px;margin-top:16px}
+.p{position:relative;aspect-ratio:1;cursor:pointer;border-radius:6px;overflow:hidden;outline:3px solid transparent;outline-offset:-3px}
+.p img{width:100%;height:100%;object-fit:cover;display:block}
+.p input{position:absolute;opacity:0}
+.p span{position:absolute;right:6px;top:6px;width:24px;height:24px;border-radius:50%;background:rgba(255,255,255,.7);display:grid;place-items:center;font-weight:700;color:transparent}
+.p input:checked~span{background:var(--gold);color:var(--ink)}
+.p:has(input:checked){outline-color:var(--gold)}
+.modal{position:fixed;inset:0;background:rgba(5,20,22,.85);display:none;place-items:center;padding:16px;z-index:20}.modal.on{display:grid}
+.box{width:min(960px,100%)}.ratio{aspect-ratio:16/9;background:#000}.ratio iframe{width:100%;height:100%;border:0}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style></head><body>
+<header><div class="bar"><div class="logo">Dropship Hub</div><nav>
+<button data-t="start" class="on">ចាប់ផ្តើម</button><button data-t="learn">មេរៀនវីដេអូ</button><button data-t="get">ទាញយក</button></nav></div></header>
+<main>
+<section id="start" class="on">
+<h1>រៀន Dropshipping ជាភាសាខ្មែរ</h1>
+<p class="sub">មគ្គុទ្ទេសក៍សម្រាប់ក្រុមការងារ ចាប់ពីមូលដ្ឋាន រហូតដល់ការលក់ផលិតផលឌីជីថល។</p>
+<button class="btn gold" onclick="tab('learn')">មើលមេរៀនវីដេអូ</button>
+<h2>Dropshipping គឺជាអ្វី?</h2>
+<p>Dropshipping ជាវិធីលក់ដែលអ្នកមិនចាំបាច់ទិញស្តុកទុកជាមុនទេ។ អ្នកដាក់លក់ផលិតផលរបស់អ្នកផ្គត់ផ្គង់នៅក្នុងហាងរបស់អ្នក។ ពេលមានអតិថិជនទិញ អ្នកផ្គត់ផ្គង់នឹងខ្ចប់ និងដឹកជូនដល់អតិថិជនដោយផ្ទាល់។ ប្រាក់ចំណេញរបស់អ្នក គឺតម្លៃលក់ ដកតម្លៃដើម។</p>
+<ol class="flow">
+<li><b>🛒</b><h3>អតិថិជនកម្ម៉ង់ទិញ</h3><p>អតិថិជនបង់ប្រាក់នៅហាងអនឡាញរបស់អ្នក</p></li>
+<li><b>📨</b><h3>អ្នកបញ្ជាទៅអ្នកផ្គត់ផ្គង់</h3><p>អ្នកបង់ថ្លៃដើម ហើយផ្ញើអាសយដ្ឋានអតិថិជន</p></li>
+<li><b>🚚</b><h3>ខ្ចប់ និងដឹកជូន</h3><p>អ្នកផ្គត់ផ្គង់ដឹកជូនដល់អតិថិជនដោយផ្ទាល់</p></li>
+<li><b>💰</b><h3>ទទួលបានប្រាក់ចំណេញ</h3><p>តម្លៃលក់ − តម្លៃដើម = ចំណេញ</p></li></ol>
+<h2>Digital Dropshipping គឺជាអ្វី?</h2>
+<p>គោលការណ៍ដូចគ្នា ប៉ុន្តែលក់ផលិតផលឌីជីថល។ មិនមានទំនិញរូបវន្ត គ្មានការខ្ចប់ និងគ្មានថ្លៃដឹកជញ្ជូន។ អតិថិជនទទួលបានភ្លាមៗតាមអ៊ីនធឺណិត។</p>
+<div class="tags" style="margin-top:14px"><span>បញ្ចូលលុយហ្គេម (Top-up)</span><span>គណនី / Subscription</span><span>វគ្គសិក្សាអនឡាញ</span><span>Template និងឯកសារឌីជីថល</span><span>កម្មវិធី និង License</span></div>
+<table class="vs"><tr><th></th><th>ទំនិញរូបវន្ត</th><th>ផលិតផលឌីជីថល</th></tr>
+<tr><td>ការដឹកជញ្ជូន</td><td>ត្រូវការ</td><td>មិនត្រូវការ</td></tr>
+<tr><td>ពេលទទួលទំនិញ</td><td>ច្រើនថ្ងៃ</td><td>ភ្លាមៗ</td></tr>
+<tr><td>ហានិភ័យធំបំផុត</td><td>ទំនិញខូច ឬយឺត</td><td>កូដ ឬគណនីមិនដំណើរការ</td></tr></table>
+<h2>ចំណុចត្រូវប្រុងប្រយ័ត្ន</h2>
+<ul><li>ជ្រើសរើសអ្នកផ្គត់ផ្គង់ដែលអាចទុកចិត្តបាន ហើយសាកល្បងកម្ម៉ង់ដោយខ្លួនឯងជាមុន។</li>
+<li>គណនាថ្លៃដើម ថ្លៃសេវា និងថ្លៃដឹកជញ្ជូនឲ្យច្បាស់ មុនកំណត់តម្លៃលក់។</li>
+<li>ឆ្លើយអតិថិជនឲ្យលឿន ព្រោះអ្នកគឺជាមុខរបស់ហាង មិនមែនអ្នកផ្គត់ផ្គង់ទេ។</li></ul>
+</section>
+<section id="learn"><h1>មេរៀនវីដេអូ</h1>
+<p class="sub">ចុចលើមេរៀនដើម្បីមើលភ្លាមៗ។ <b id="pg"></b></p>
+<div class="ctl"><input type="text" id="q" placeholder="ស្វែងរកមេរៀន…" oninput="draw()">
+<span class="fl"><button class="btn ghost on" data-l="all">ទាំងអស់</button> <button class="btn ghost" data-l="km">ខ្មែរ</button> <button class="btn ghost" data-l="en">English</button></span></div>
+<div class="vg" id="vg">កំពុងផ្ទុក…</div></section>
+<section id="get"><h1>ទាញយកវីដេអូ និងរូបភាព</h1>
+<p class="sub">បិទភ្ជាប់តំណពី TikTok, Facebook, Instagram, YouTube ឬគេហទំព័រផ្សេងៗ។ ប្រព័ន្ធនឹងដឹងខ្លួនឯងថាជាវីដេអូ ឬរូបភាព។</p>
+<div class="paste"><input id="u" type="text" placeholder="បិទភ្ជាប់តំណនៅទីនេះ…" autocomplete="off"><button class="btn" onclick="check()">ពិនិត្យ</button></div>
+<div id="st"></div><div id="res"></div>
+<p class="sub" style="font-size:14px;margin-top:30px">សូមទាញយកតែមាតិកាដែលអ្នកជាម្ចាស់ ឬមានសិទ្ធិប្រើប្រាស់ប៉ុណ្ណោះ។</p></section>
+</main>
+<div class="modal" id="m" onclick="if(event.target==this)closeM()"><div class="box"><div class="ratio"><iframe id="fr" allow="autoplay;fullscreen" allowfullscreen></iframe></div>
+<div class="chips"><button class="btn gold" id="mk"></button><a class="btn ghost" id="yt" target="_blank" rel="noopener" style="text-decoration:none">បើកក្នុង YouTube</a><button class="btn ghost" onclick="closeM()">បិទ</button></div></div></div>
+<script>
+const $=s=>document.querySelector(s),enc=encodeURIComponent,esc=s=>String(s||'').replace(/[&<>"']/g,c=>'&#'+c.charCodeAt()+';');
+async function api(u,b){const r=await fetch(u,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(b)});const j=await r.json().catch(()=>({}));if(!r.ok)throw new Error(j.detail||r.status);return j}
+function tab(id){document.querySelectorAll('nav button').forEach(b=>b.classList.toggle('on',b.dataset.t==id));document.querySelectorAll('section').forEach(s=>s.classList.toggle('on',s.id==id));scrollTo(0,0)}
+document.querySelectorAll('nav button').forEach(b=>b.onclick=()=>tab(b.dataset.t));
+let L=[],lang='all',cur='',W=[];try{W=JSON.parse(localStorage.getItem('w')||'[]')}catch(e){}
+fetch('/api/lessons').then(r=>r.json()).then(d=>{L=d;draw()}).catch(()=>$('#vg').textContent='មិនអាចផ្ទុកមេរៀនបានទេ');
+document.querySelectorAll('.fl button').forEach(b=>b.onclick=()=>{lang=b.dataset.l;document.querySelectorAll('.fl button').forEach(x=>x.classList.toggle('on',x==b));draw()});
+function draw(){const q=$('#q').value.toLowerCase();
+$('#vg').innerHTML=L.filter(v=>(lang=='all'||v.lang==lang)&&(v.title+v.by).toLowerCase().includes(q)).map(v=>`<div class="v" tabindex="0" onclick="play('${v.id}')" onkeydown="event.key=='Enter'&&play('${v.id}')"><div class="th"><img loading="lazy" src="${v.thumb}" alt=""><b>▶</b>${W.includes(v.id)?'<em>បានមើល</em>':''}</div><h3>${esc(v.title)}</h3><p>${esc(v.by)}</p></div>`).join('')||'<p>រកមិនឃើញមេរៀនទេ</p>';
+$('#pg').textContent=`បានមើល ${W.filter(x=>L.some(v=>v.id==x)).length} / ${L.length}`}
+function mk(){$('#mk').textContent=W.includes(cur)?'✓ បានមើលរួច':'សម្គាល់ថាបានមើលរួច'}
+function play(id){cur=id;$('#fr').src='https://www.youtube-nocookie.com/embed/'+id+'?autoplay=1&rel=0';$('#yt').href='https://www.youtube.com/watch?v='+id;mk();$('#m').classList.add('on')}
+function closeM(){$('#fr').src='about:blank';$('#m').classList.remove('on')}
+$('#mk').onclick=()=>{W=W.includes(cur)?W.filter(x=>x!=cur):[...W,cur];try{localStorage.setItem('w',JSON.stringify(W))}catch(e){}mk();draw()};
+addEventListener('keydown',e=>e.key=='Escape'&&closeM());
+let I=null;
+const dur=s=>s?Math.floor(s/60)+':'+String(Math.floor(s%60)).padStart(2,'0'):'';
+function st(m,c=''){const e=$('#st');e.className=c;e.textContent=m}
+function saveFile(j){const a=document.createElement('a');a.href='/api/file/'+j.id;a.download=j.name;document.body.append(a);a.click();a.remove()}
+async function check(){const u=$('#u').value.trim();if(!u)return st('សូមបិទភ្ជាប់តំណជាមុនសិន','err');
+$('#res').innerHTML='';st('កំពុងពិនិត្យតំណ…','load');
+try{I=await api('/api/info',{url:u});I.url=u;st('');show()}catch(e){st('មិនអាចអានតំណនេះបានទេ។ សូមពិនិត្យថាតំណត្រឹមត្រូវ និងជាសាធារណៈ។ ('+e.message+')','err')}}
+$('#u').addEventListener('keydown',e=>e.key=='Enter'&&check());
+function show(){const lab=h=>!h?'ល្អបំផុត':h>=2160?'4K':h>=1440?'2K':h+'p',th=u=>'/api/img?u='+enc(u);
+if(I.type=='video'){const hs=I.heights.filter(h=>h>=360);
+$('#res').innerHTML=`<div class="res dl">${I.thumb?`<img src="${th(I.thumb)}" alt="">`:'<div></div>'}<div><h3>${esc(I.title)}</h3><p style="color:var(--mut)">${esc(I.by)} ${dur(I.dur)}</p><div class="chips">${(hs.length?hs:[0]).map(h=>`<button class="btn" onclick="go(${h},0)">${lab(h)}</button>`).join('')}<button class="btn gold" onclick="go(0,1)">MP3</button></div></div></div>`;return}
+$('#res').innerHTML=`<div class="res"><h3>${esc(I.title)} (${I.items.length} រូប)</h3><div class="chips"><button class="btn ghost" onclick="pick(1)">ជ្រើសទាំងអស់</button><button class="btn ghost" onclick="pick(0)">លុបការជ្រើស</button><button class="btn" id="pb" onclick="photos()"></button></div><div class="pg">${I.items.map((u,i)=>`<label class="p"><input type="checkbox" checked data-i="${i}" onchange="cnt()"><img loading="lazy" src="${th(u)}" alt=""><span>✓</span></label>`).join('')}</div></div>`;cnt()}
+async function go(h,m){st('កំពុងរៀបចំឯកសារ… វីដេអូធំអាចចំណាយពេលបន្តិច','load');
+try{const j=await api('/api/prepare',{url:I.url,h,mp3:m});saveFile(j);st('✅ កំពុងទាញយក៖ '+j.name+' ('+(j.size/1048576).toFixed(1)+' MB)')}catch(e){st('ទាញយកមិនបានទេ៖ '+e.message,'err')}}
+function cnt(){const n=document.querySelectorAll('.p input:checked').length;$('#pb').textContent=n>1?`ទាញយក ZIP (${n} រូប)`:`ទាញយករូបភាព (${n})`;$('#pb').disabled=!n}
+function pick(v){document.querySelectorAll('.p input').forEach(i=>i.checked=!!v);cnt()}
+async function photos(){const u=[...document.querySelectorAll('.p input:checked')].map(i=>I.items[i.dataset.i]);
+if(u.length==1){const a=document.createElement('a');a.href='/api/img?dl=1&name='+enc(I.title)+'&u='+enc(u[0]);document.body.append(a);a.click();a.remove();return}
+st('កំពុងបង្កើតឯកសារ ZIP…','load');
+try{const j=await api('/api/zip',{urls:u,name:I.title});saveFile(j);st('✅ កំពុងទាញយក ZIP')}catch(e){st('បង្កើត ZIP មិនបានទេ៖ '+e.message,'err')}}
+</script></body></html>
